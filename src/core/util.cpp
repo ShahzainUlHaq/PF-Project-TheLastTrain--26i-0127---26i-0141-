@@ -53,6 +53,10 @@ void printHeader(const char* title) {
   cout << "-";}
  cout << endl;
 }  
+
+void clearScreen() {
+ cout << "\033[2J\033[H";
+ }
    
     
         
