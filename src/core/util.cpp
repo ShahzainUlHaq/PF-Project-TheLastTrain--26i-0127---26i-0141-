@@ -14,4 +14,31 @@ bool stringEquals(const char* a, const char* b) {
  while ((a[i] == b[i]) && (a[i] != '\0') && (b[i] != '\0')) {
   i++; }
  return (a[i] == b[i]);
-}   
+}
+
+static bool Space(char a) {
+ return ( a == ' ' || a == '\t' || a == '\n' || a == '\r'); 
+}
+
+void trimWhitespace (char* str) {
+ int start = 0;
+ while ( Space(str[start]) ) {
+  start++;
+ }
+ int end = start;
+ while ( str[end] != '\0') {
+  end++;
+ }
+ while (end > start && (Space(str[end - 1]))) {
+  end--;
+ }
+ 
+ int i = 0;
+ while (start < end) {
+  str[i] = str[start];
+  i++;
+  start++;
+ }
+ str[i] = {'\0'};
+}    
+        
