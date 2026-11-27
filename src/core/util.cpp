@@ -1,4 +1,6 @@
 #include "util.h"
+#include<iostream>
+using namespace std;
 
 // Primitive helper utilities, clamping, and screen control
 int clampInt(int val, int minVal, int maxVal) {
@@ -40,5 +42,17 @@ void trimWhitespace (char* str) {
   start++;
  }
  str[i] = {'\0'};
-}    
+}  
+
+void printHeader(const char* title) {
+ for (int i = 0; i < 35; i++) {
+  cout << "-"; }
+ cout << endl;
+ cout << " " << title << endl;
+ for (int i = 0; i < 35; i++) {
+  cout << "-";}
+ cout << endl;
+}  
+   
+    
         
