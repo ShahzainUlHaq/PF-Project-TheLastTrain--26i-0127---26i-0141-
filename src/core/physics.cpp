@@ -10,6 +10,16 @@ bool hasItem(const char inventory[MAX_INVENTORY_CAPACITY], int inventoryCount, c
   }
  return false;
 }   
+
+bool addItem(char inventory[MAX_INVENTORY_CAPACITY], int& inventoryCount, char itemSymbol) {
+ if (inventoryCount >= MAX_INVENTORY_CAPACITY) {
+  return false;
+ }
+ inventory[inventoryCount] = itemSymbol;
+ inventoryCount++;
+ return true;
+}  
+ 
    
   
 
