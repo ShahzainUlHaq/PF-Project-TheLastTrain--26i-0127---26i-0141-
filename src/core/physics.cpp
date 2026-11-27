@@ -37,6 +37,10 @@ void applyScoreDelta(int& score, int deltaScore) {
  score += deltaScore;
 }
 
+void applyResourceDelta(int& energy, int& time, int deltaEnergy, int deltaTime) {
+ energy = clampInt(energy+deltaEnergy, 0, MAX_ENERGY);
+ time = clampInt(time+deltaTime, 0 , MAX_TIME);
+} 
  
    
   
