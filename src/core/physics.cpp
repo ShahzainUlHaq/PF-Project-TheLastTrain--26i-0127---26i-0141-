@@ -32,6 +32,11 @@ bool removeItem(char inventory[MAX_INVENTORY_CAPACITY], int& inventoryCount, cha
  }
  return false;
 }      
+
+void applyScoreDelta(int& score, int deltaScore) {
+ score += deltaScore;
+}
+
  
    
   
