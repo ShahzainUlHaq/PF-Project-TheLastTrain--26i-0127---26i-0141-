@@ -42,6 +42,46 @@ void applyResourceDelta(int& energy, int& time, int deltaEnergy, int deltaTime) 
  time = clampInt(time+deltaTime, 0 , MAX_TIME);
 } 
  
-   
-  
+bool isDirectlyConnected(int fromF, int fromR, int toF, int toR, const char horizontalConn[NUM_FLOORS][ROOMS_PER_FLOOR -1], char& outConnType) {
+ int index;
+ if (fromF < 0 || fromF >= NUM_FLOORS || toF < 0 || toF >= NUM_FLOORS || fromR < 0 || fromR >= ROOMS_PER_FLOOR || toR < 0 || toR >= ROOMS_PER_FLOOR ) {
+  return false; 
+ }
+ if (fromF == toF) {
+  int diff = fromR - toR;
+   if (diff == 1 || diff == -1) {
+    if (fromR < toR) {
+     index = fromR; }
+    else { 
+     index = toR; } 
+    char conn = horizontalConn[fromF][index];
+    if (conn == CONN_NONE || conn == CONN_SOLID_WALL) {
+     return false; }
+    outConnType = conn;
+    return true;
+   }
+   return false;
+  }
+ int floorDiff = fromF - toF;
+ if (floorDiff < 0) {
+  floorDiff = -floorDiff;
+ }
+ int lowF = fromF;
+ if (toF < fromF) {
+  lowF = toF;
+ }
+ if (fromR == 0 && toR == 0 && floorDiff == 1 && (lowF == 0 || lowF == 1 || lowF == 3)) { 
+  outConnType = CONN_STAIRS;
+  return true;
+ }
+ if (fromF <= 1 && toF <= 1 && fromR >= 1 && fromR <= 2 && toR >= 1 && toR <= 2) {
+  outConnType = CONN_LIFT1;
+  return true;
+ }
+ if (fromR == 3 && toR == 3 && (fromF == 1 || fromF == 3 || fromF == 4) && (toF == 1 || toF == 3 || toF == 4)) {
+  outConnType = CONN_LIFT2;
+  return true;     
+ }      
+ return false;   
+  }
 
